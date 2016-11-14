@@ -16,12 +16,10 @@ INCLUDEPATH += "$$PWD/include"
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    loadingdialog.cpp \
-    timeoutsender.cpp
+    loadingdialog.cpp
 
 HEADERS  += mainwindow.h \
-    loadingdialog.h \
-    timeoutsender.h
+    loadingdialog.h
 
 FORMS    += mainwindow.ui \
     loadingdialog.ui
