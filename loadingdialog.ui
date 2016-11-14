@@ -15,7 +15,20 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="WaitingSpinnerWidget" name="spinner" native="true"/>
+    <widget class="WaitingSpinnerWidget" name="spinner" native="true">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QProgressBar" name="progressBar">
+        <property name="maximum">
+         <number>0</number>
+        </property>
+        <property name="value">
+         <number>-1</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>

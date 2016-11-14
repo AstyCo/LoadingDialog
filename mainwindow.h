@@ -5,6 +5,20 @@
 
 #include "loadingdialog.h"
 
+class I : public QThread
+{
+public:
+    static void sleep(unsigned long secs) {
+        QThread::sleep(secs);
+    }
+    static void msleep(unsigned long msecs) {
+        QThread::msleep(msecs);
+    }
+    static void usleep(unsigned long usecs) {
+        QThread::usleep(usecs);
+    }
+};
+
 namespace Ui {
 class MainWindow;
 }
@@ -21,7 +35,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    void calcFactorial();
+    void calcFunc();
 
 private:
     Ui::MainWindow *ui;

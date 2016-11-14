@@ -19,14 +19,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::calcFactorial()
+void MainWindow::calcFunc()
 {
-    QList<long long> factorialArray;
-    for(int i=1; i<100;++i)
+    QList<long long> array;
+    for(long long i=1; i<1000000;++i)
     {
+//        I::sleep(1);
         static long long j = 1;
-        j*=i;
-        factorialArray.append(j);
+        j+=qrand()%10;
+        array.append(j);
         qDebug()<<j;
     }
 }
@@ -34,5 +35,8 @@ void MainWindow::calcFactorial()
 void MainWindow::on_pushButton_clicked()
 {
     LoadingDialog *dlg = new LoadingDialog(this);
-    dlg->exec();
+    dlg->show();
+    //QApplication::processEvents();
+    calcFunc();
+//    dlg->close();
 }

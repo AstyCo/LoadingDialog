@@ -17,11 +17,15 @@ public:
     explicit LoadingDialog(QWidget *parent = 0);
     ~LoadingDialog();
 
-
+protected:
+    void keyPressEvent(QKeyEvent *);
 
 private:
     void init();
     void initSpinner();
+
+private slots:
+    void onTimeout();
 
 private:
     Ui::LoadingDialog *ui;
