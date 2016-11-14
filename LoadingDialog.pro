@@ -11,15 +11,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LoadingDialog
 TEMPLATE = app
 
-LIBS += "$$PWD/lib/libqtwaitingspinner.a"
-INCLUDEPATH += "$$PWD/include"
+#LIBS += "$$PWD/lib/libqtwaitingspinner.a"
+#INCLUDEPATH += "$$PWD/include"
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    loadingdialog.cpp
+    loadingdialog.cpp \
+    worker.cpp \
+    specialworker.cpp \
+    waitingspinnerwidget.cpp
 
 HEADERS  += mainwindow.h \
-    loadingdialog.h
+    loadingdialog.h \
+    worker.h \
+    specialworker.h \
+    waitingspinnerwidget.h
 
 FORMS    += mainwindow.ui \
     loadingdialog.ui

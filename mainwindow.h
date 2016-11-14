@@ -23,6 +23,16 @@ namespace Ui {
 class MainWindow;
 }
 
+class JustTest : public QObject
+{
+    Q_OBJECT
+
+public:
+    virtual ~JustTest(){};
+public slots:
+    void calcFunc();
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -31,11 +41,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void calcFunc();
 private slots:
     void on_pushButton_clicked();
 
+signals:
+    void setProc(int);
+
 private:
-    void calcFunc();
 
 private:
     Ui::MainWindow *ui;
