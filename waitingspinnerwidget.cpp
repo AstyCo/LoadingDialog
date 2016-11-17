@@ -32,6 +32,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <QTimer>
 
 #include <QDebug>
+#include <QEventLoop>
+#include <QApplication>
 
 WaitingSpinnerWidget::WaitingSpinnerWidget(QWidget *parent,
                                            bool centerOnParent,
@@ -59,6 +61,7 @@ WaitingSpinnerWidget::WaitingSpinnerWidget(Qt::WindowModality modality,
 }
 
 void WaitingSpinnerWidget::initialize() {
+    _centerOnlyH=false;
     _mode = UnlimittedMode;
     _proc=0;
     _color = Qt::black;
@@ -94,8 +97,6 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
     painter.setPen(Qt::black);
     if(_mode==DefiniteMode)
     {
-        qDebug()<<"drawProc "<<QRectF(_lineLength,_lineLength,_innerRadius*1.0/1.2,_innerRadius*1.0/1.2)
-               <<' '<< _proc;
         painter.drawText(QRectF(_lineLength,_lineLength,_innerRadius*2.0,_innerRadius*2.0),QString::number(_proc),
                          QTextOption(Qt::AlignCenter));
     }
@@ -173,7 +174,7 @@ void WaitingSpinnerWidget::setInnerRadius(int radius) {
     updateSize();
 }
 
-void WaitingSpinnerWidget::setProc(int newValue)
+void WaitingSpinnerWidget::setProcess(int newValue)
 {
     _proc = newValue;
     update();
@@ -259,9 +260,30 @@ void WaitingSpinnerWidget::updateTimer() {
 
 void WaitingSpinnerWidget::updatePosition() {
     if (parentWidget() && _centerOnParent) {
-        move(parentWidget()->width() / 2 - width() / 2,
-             parentWidget()->height() / 2 - height() / 2);
+        if(_centerOnlyH)
+        {
+            move(parentWidget()->width() / 2 - width() / 2,y());
+            QApplication::instance()->processEvents();
+        }
+        else
+            move(parentWidget()->width() / 2 - width() / 2,
+                parentWidget()->height() / 2 - height() / 2);
     }
+}
+
+void WaitingSpinnerWidget::setCenterOnlyH(bool centerOnlyH)
+{
+    _centerOnlyH = centerOnlyH;
+}
+
+void WaitingSpinnerWidget::setCenterOnParent(bool centerOnParent)
+{
+    _centerOnParent = centerOnParent;
+}
+
+void WaitingSpinnerWidget::setDisableParentWhenSpinning(bool disableParentWhenSpinning)
+{
+    _disableParentWhenSpinning = disableParentWhenSpinning;
 }
 
 WaitingSpinnerWidget::Mode WaitingSpinnerWidget::mode() const

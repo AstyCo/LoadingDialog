@@ -31,7 +31,7 @@ void MainWindow::calcFunc()
         array.append(j);
         qDebug()<<j;
 
-        setProc(i*10);
+        setProcess(i*10);
     }
 }
 
@@ -51,27 +51,10 @@ void doCalc()
 
 void MainWindow::on_pushButton_clicked()
 {
-#define CASE 3
-#if CASE == 1
     // CASE 1
     LoadingDialog *dlg = new LoadingDialog(this);
     dlg->setFunc(&doCalc);
     dlg->run();
-#elif CASE == 2
-//    // CASE 2
-    LoadingDialog *dlg = new LoadingDialog(this);
-    dlg->setDefiniteMode();
-    dlg->setProcessName(QString::fromUtf8("Тестовое приложение"));
-    SpecialWorker *worker = new SpecialWorker();
-    worker->setMainWindow(this);
-    dlg->setWorker(worker);
-    dlg->run();
-#elif CASE == 3
-    LoadingDialog *dlg = new LoadingDialog(this);
-    dlg->setUnlimittedMode();
-    dlg->setProcessName(QString::fromUtf8("Тестовое приложение"));
-    dlg->show();
-#endif
 }
 
 void JustTest::calcFunc()
@@ -88,4 +71,39 @@ void JustTest::calcFunc()
         array.append(j);
         qDebug()<<j;
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    LoadingDialog *dlg = new LoadingDialog(this);
+    dlg->setDefiniteMode();
+    dlg->setProcessName(QString::fromUtf8("Тестовое приложение"));
+    SpecialWorker *worker = new SpecialWorker();
+    worker->setMainWindow(this);
+    dlg->setWorker(worker);
+    dlg->run();
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    LoadingDialog *dlg = new LoadingDialog();
+    dlg->setUnlimittedMode();
+    dlg->setProcessName(QString::fromUtf8("Тестовое приложение"));
+    dlg->show();
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    qDebug() <<"3";
+    LoadingDialog *dlg = new LoadingDialog(this);
+    dlg->setVisualWidget(LoadingDialog::widgetSpinner);
+    dlg->setDefiniteMode();
+    dlg->setProcessName(QString::fromUtf8("Тестовое приложение"));
+    dlg->show();
+    for(int i=0;i<10;++i)
+    {
+        I::msleep(300);
+        dlg->setProcess(i*10);
+    }
+    dlg->close();
 }

@@ -10,7 +10,7 @@ SpecialWorker::SpecialWorker():
 void SpecialWorker::setMainWindow(MainWindow *mw)
 {
     _mw=mw;
-    connect(_mw,SIGNAL(setProc(int)),this,SIGNAL(setProc(int)));
+    connect(_mw,SIGNAL(setProcess(int)),this,SIGNAL(setProcess(int)));
 }
 
 void SpecialWorker::doWork()

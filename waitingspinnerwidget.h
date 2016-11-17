@@ -54,6 +54,7 @@ public slots:
     void stop();
 
 public:
+    void updatePosition();
     void setColor(QColor color);
     void setRoundness(qreal roundness);
     void setMinimumTrailOpacity(qreal minimumTrailOpacity);
@@ -64,7 +65,7 @@ public:
     void setLineWidth(int width);
     void setInnerRadius(int radius);
 
-    void setProc(int);
+    void setProcess(int);
 
     QColor color();
     qreal roundness();
@@ -80,6 +81,12 @@ public:
 
     Mode mode() const;
     void setMode(const Mode &mode);
+
+    void setDisableParentWhenSpinning(bool disableParentWhenSpinning);
+
+    void setCenterOnParent(bool centerOnParent);
+
+    void setCenterOnlyH(bool centerOnlyH);
 
 private slots:
     void rotate();
@@ -97,7 +104,6 @@ private:
     void initialize();
     void updateSize();
     void updateTimer();
-    void updatePosition();
 
 private:
 
@@ -120,6 +126,7 @@ private:
 
     QTimer *_timer;
     bool    _centerOnParent;
+    bool _centerOnlyH;
     bool    _disableParentWhenSpinning;
     int     _currentCounter;
     bool    _isSpinning;

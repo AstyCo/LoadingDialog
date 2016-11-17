@@ -19,7 +19,7 @@ public slots:
 
 signals:
     void workFinished();
-    void setProc(int newValue);
+    void setProcess(int newValue);
 
 private:
     void (*m_func)();
